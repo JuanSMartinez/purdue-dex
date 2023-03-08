@@ -15,10 +15,12 @@ function PokemonThumbail({infoUrl}) {
 
     return (
         <td>
-            <img 
-                src={pokemonData ? pokemonData.sprites.front_default : loadingIcon} 
-                alt={`Thumbnail for ${pokemonData ? pokemonData.name: null}`} />
-            <p>{pokemonData ? `#${pokemonData.id}-${pokemonData.name}` : 'loading...'}</p>
+            <button class="ThumbnailButton" onClick={() => console.log('Clicked on pokemon thumbnail')}>
+                <img 
+                    src={pokemonData ? pokemonData.sprites.front_default : loadingIcon} 
+                    alt={`Thumbnail for ${pokemonData ? pokemonData.name: null}`} />
+                <p>{pokemonData ? `#${pokemonData.id}-${pokemonData.name}` : 'loading...'}</p>
+            </button>
         </td>
     );
 };
