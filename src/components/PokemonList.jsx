@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 function PokemonList(){
     const [pageInfo, setPageInfo] = useState({
         'previous': null, 
-        'next':"https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=12"
+        'next':"https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=9"
     });
     const [pokemon, setPokemon] = useState();
     const [totalPages, setTotalPages] = useState(0);
@@ -37,7 +37,7 @@ function PokemonList(){
             'next': jsonResponse.next,
             'previous': jsonResponse.previous
         })
-        setTotalPages(Math.ceil(jsonResponse.count / 12));
+        setTotalPages(Math.ceil(jsonResponse.count / 9));
     };
 
     // Handle the error of a failed fecthed URL
