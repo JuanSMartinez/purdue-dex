@@ -1,5 +1,5 @@
-.PokemonViewer {
-    grid-area: viewer;
+.PokemonTeam {
+    grid-area: team;
     padding: 10px;
     background-color: antiquewhite;
     border-radius: 20px;
