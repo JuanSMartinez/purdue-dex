@@ -4,3 +4,8 @@
     background-color: #A8C64E;
     border-radius: 20px;
 }
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}

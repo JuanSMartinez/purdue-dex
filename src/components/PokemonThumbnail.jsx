@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import loadingIcon from '../loading.png'
+import '../style/PokemonThumbnail.css'
 
-function PokemonThumbail({name, infoUrl}) {
-    const [imgUrl, setImgUrl] = useState();
+function PokemonThumbail({infoUrl}) {
+    const [pokemonData, setPokemonData] = useState(null);
     
-    // Get the image
-    fetch(infoUrl)
-    .then((response) => response.json())
-    .then((jsonResponse) => setImgUrl(jsonResponse.sprites.front_default))
-    .catch((error) => console.log(error));
+    // Get the pokemon information
+    useEffect(() => {
+        fetch(infoUrl)
+        .then((response) => response.json())
+        .then((jsonResponse) => setPokemonData(jsonResponse))
+        .catch((error) => console.log(error));
+    }, []);
 
     return (
-        <div>
-            <img src={imgUrl} alt={`Thumbnail for ${name}`} />
-            <p>{name}</p>
-        </div>
+        <td>
+            <img 
+                src={pokemonData ? pokemonData.sprites.front_default : loadingIcon} 
+                alt={`Thumbnail for ${pokemonData ? pokemonData.name: null}`} />
+            <p>{pokemonData ? `#${pokemonData.id}-${pokemonData.name}` : 'loading...'}</p>
+        </td>
     );
 };
 

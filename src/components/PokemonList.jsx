@@ -6,7 +6,7 @@ function PokemonList(){
     const [offset, setOffset] = useState(0);
     const [pokemon, setPokemon] = useState();
 
-    const displayLimit = 10;
+    const displayLimit = 12;
 
     //Handle the fetch of a URL of pokemon
     const handleFetch = (fetchResponse) => {
@@ -15,13 +15,26 @@ function PokemonList(){
 
     // Handle the JSON response from the fetch URL
     const handleResponse = (jsonResponse) => {
-        const pokemonThumbnails = jsonResponse.results.map((item) => {
+        const groupedResponses = jsonResponse.results.reduce((accumulator, _, currentIndex, array) => {
+            if (currentIndex % 3 === 0){
+                accumulator.push(array.slice(currentIndex, currentIndex + 3));
+            }
+            return accumulator;
+        }, []);
+        const pokemonThumbnails = groupedResponses.map((item, i) => {
+            const leftThumbnail = 
+                <PokemonThumbail key={item[0].name} infoUrl={item[0].url} />;
+            const middleThumbnail = 
+                <PokemonThumbail key={item[1].name} infoUrl={item[1].url} />;
+            const rightThumbnail = 
+                <PokemonThumbail key={item[2].name} infoUrl={item[2].url} />;
             return (
-                <li key={item.name}>
-                    <PokemonThumbail name={item.name} infoUrl={item.url} />
-                </li>
+                <tr key={i}>
+                    {leftThumbnail}
+                    {middleThumbnail}
+                    {rightThumbnail}
+                </tr>
             );
-            
         });
         setPokemon(pokemonThumbnails);
     };
@@ -43,7 +56,9 @@ function PokemonList(){
 
     return (
         <div className="PokemonList">
-            <ul>{pokemon}</ul>
+            <table>
+                <tbody>{pokemon}</tbody>
+            </table>
             <button onClick={() => setOffset(Math.max(offset - displayLimit, 0))}>Previous</button>
             <button onClick={() => setOffset(offset + displayLimit)}>Next</button>
         </div>
