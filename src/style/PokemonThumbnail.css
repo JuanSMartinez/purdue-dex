@@ -2,9 +2,17 @@ td {
     text-align: center;
 }
 
-.ThumbnailButton {
-    border: none;
+.thumbnail-button {
+    border: solid;
+    border-radius: 20px;
     cursor: pointer;
     appearance: none;
-    background-color: inherit;
+    background-color: #EFFCD5;
+    box-shadow: 3px 3px 1px #855AC9;
+}
+
+.thumbnail-info {
+    border: solid;
+    border-radius: 5px;
+    border-width: 2px;
 }

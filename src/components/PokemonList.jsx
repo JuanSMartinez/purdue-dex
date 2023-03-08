@@ -52,7 +52,6 @@ function PokemonList(){
             .then(handleFetch)
             .then((response) => {
                 handleResponse(response);
-                console.log(response)
                 setCurrentPage(page === 'next' ? currentPage + 1 : currentPage - 1);
             })
             .catch(handleError);
