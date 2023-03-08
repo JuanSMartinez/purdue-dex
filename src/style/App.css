@@ -5,4 +5,9 @@
     border-radius: 20px;
     background-color: #FB1B1B;
     box-shadow: 5px 5px 2px;
+    display: grid;
+    grid-template-areas: 
+        'viewer list'
+        'team list';
+    gap: 10px;
 }
