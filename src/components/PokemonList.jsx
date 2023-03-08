@@ -1,4 +1,5 @@
 import "../style/PokemonList.css"
+import PokemonThumbail from "./PokemonThumbnail";
 import { useState, useEffect } from "react";
 
 function PokemonList(){
@@ -14,9 +15,15 @@ function PokemonList(){
 
     // Handle the JSON response from the fetch URL
     const handleResponse = (jsonResponse) => {
-        const names = jsonResponse.results.map((item) => <li key={item.name}>{item.name}</li>);
-        setPokemon(names);
-        console.log(jsonResponse.results);
+        const pokemonThumbnails = jsonResponse.results.map((item) => {
+            return (
+                <li key={item.name}>
+                    <PokemonThumbail name={item.name} infoUrl={item.url} />
+                </li>
+            );
+            
+        });
+        setPokemon(pokemonThumbnails);
     };
 
     // Handle the error of a failed fecthed URL
