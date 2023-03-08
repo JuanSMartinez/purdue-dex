@@ -1,0 +1,7 @@
+.PokemonViewer {
+    grid-area: viewer;
+    margin: 10px;
+    padding: 10px;
+    background-color: antiquewhite;
+    border-radius: 20px;
+}
