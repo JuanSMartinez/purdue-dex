@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <PokemonList onPokemonClicked={onClickedPokemon}/>
       <PokemonViewer focusedPokemon={focusedPokemonData} teamChangeHandler={onTeamChange}/>
-      <PokemonTeam chosenTeam={team}/>
+      <PokemonTeam chosenTeam={team} onPokemonClicked={onClickedPokemon}/>
     </div>
   );
 }
