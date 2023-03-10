@@ -16,7 +16,6 @@ function PokemonThumbail({infoUrl, onThumbnailClick}) {
     return (
         <td>
             <button className="thumbnail-button" onClick={() => onThumbnailClick(pokemonData)}>
-                <h3>{pokemonData ? `#${pokemonData.id}` : '?'}</h3>
                 <img 
                     src={pokemonData ? pokemonData.sprites.front_default : loadingIcon} 
                     alt={`Thumbnail for ${pokemonData ? pokemonData.name: null}`} />

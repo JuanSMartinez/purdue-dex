@@ -20,11 +20,10 @@ function App() {
       setTeam(nextTeam);
     }
     else if (request === 'remove' && atLeastOne) {
-      nextTeam.forEach((data, i) => {
-        if (data!== null && data.id === focusedPokemonData.id) {
-          nextTeam[i] = null;
-        }
-      });
+      const index = nextTeam.indexOf(focusedPokemonData);
+      if (index >= 0) {
+        nextTeam[index] = null;
+      }
       setTeam(nextTeam);
     }
   };

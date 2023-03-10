@@ -1,12 +1,20 @@
 import '../style/PokemonTeam.css'
+import loadingIcon from '../loading.png'
 
 function PokemonTeam({ chosenTeam , onPokemonClicked }) {
+    
     const teamMembers = chosenTeam.map((pokemonData, i) => {
         if(pokemonData === null){
-            return <div></div>
+            return (
+                <button key={i} className='team-member-button'>
+                <img 
+                    src={loadingIcon} 
+                    alt='Team member not filled' />
+                </button>
+            );
         }
         return (
-            <button key={pokemonData.id} className='team-member-button' onClick={() => onPokemonClicked(pokemonData)}>
+            <button key={i} className='team-member-button' onClick={() => onPokemonClicked(pokemonData)}>
                 <img 
                     src={pokemonData.sprites.front_default} 
                     alt={`Team thumbnail for ${pokemonData.name}`} />
@@ -16,9 +24,7 @@ function PokemonTeam({ chosenTeam , onPokemonClicked }) {
 
     return (
         <div className="PokemonTeam">
-            <ul>
-                {teamMembers}
-            </ul>
+            {teamMembers}
         </div>
     );
 }
