@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 function PokemonList({ onPokemonClicked }){
     const [pageInfo, setPageInfo] = useState({
         'previous': null, 
-        'next':"https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=9"
+        'next':"https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=12"
     });
     const [pokemon, setPokemon] = useState();
     const [totalPages, setTotalPages] = useState(0);
@@ -19,8 +19,8 @@ function PokemonList({ onPokemonClicked }){
     // Handle the JSON response from the fetch URL
     const handleResponse = (jsonResponse) => {
         const groupedResponses = jsonResponse.results.reduce((accumulator, _, currentIndex, array) => {
-            if (currentIndex % 3 === 0){
-                accumulator.push(array.slice(currentIndex, currentIndex + 3));
+            if (currentIndex % 4 === 0){
+                accumulator.push(array.slice(currentIndex, currentIndex + 4));
             }
             return accumulator;
         }, []);
@@ -42,7 +42,7 @@ function PokemonList({ onPokemonClicked }){
             'next': jsonResponse.next,
             'previous': jsonResponse.previous
         })
-        setTotalPages(Math.ceil(jsonResponse.count / 9));
+        setTotalPages(Math.ceil(jsonResponse.count / 12));
     };
 
     // Handle the error of a failed fecthed URL
@@ -70,7 +70,7 @@ function PokemonList({ onPokemonClicked }){
 
     return (
         <div className="PokemonList">
-            <table>
+            <table id='page-table'>
                 <tbody>{pokemon}</tbody>
             </table>
             <button onClick={() => moveTo('previous')}>Previous</button>

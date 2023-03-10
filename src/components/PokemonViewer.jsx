@@ -27,6 +27,7 @@ function PokemonViewer({ focusedPokemon, teamChangeHandler }){
             <img 
             src={focusedPokemon ? focusedPokemon.sprites.other['official-artwork'].front_default : pokeballLarge}
             alt='Selected pokemon artwork'
+            width='70%'
             />
         </div>
     );
@@ -46,10 +47,12 @@ function PokemonViewer({ focusedPokemon, teamChangeHandler }){
                         src={focusedPokemon.sprites.front_default}
                         alt='Selected pokemon sprite'
                     />
-                    <img 
-                        src={focusedPokemon.sprites.front_shiny}
-                        alt='Selected pokemon shiny sprite'
-                    />
+                    {focusedPokemon.sprites.front_shiny ?
+                        <img 
+                            src={focusedPokemon.sprites.front_shiny}
+                            alt='Selected pokemon shiny sprite'
+                        /> : <></>
+                    }
                     <div>
                         {types}
                     </div>

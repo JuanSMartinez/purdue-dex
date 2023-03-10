@@ -5,7 +5,7 @@
     border-radius: 20px;
 }
 
-table {
+#page-table {
     table-layout: fixed;
     width: 100%;
 }

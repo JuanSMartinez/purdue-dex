@@ -24,7 +24,9 @@ function PokemonTeam({ chosenTeam , onPokemonClicked }) {
 
     return (
         <div className="PokemonTeam">
-            {teamMembers}
+            <div>
+                {teamMembers}
+            </div>
         </div>
     );
 }
