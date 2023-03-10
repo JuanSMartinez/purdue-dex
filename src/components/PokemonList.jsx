@@ -70,12 +70,16 @@ function PokemonList({ onPokemonClicked }){
 
     return (
         <div className="PokemonList">
-            <table id='page-table'>
-                <tbody>{pokemon}</tbody>
-            </table>
-            <button onClick={() => moveTo('previous')}>Previous</button>
-            <button onClick={() => moveTo('next')}>Next</button>
-            <span>Page {currentPage} of {totalPages}</span>
+            <div className='page-container'>
+                <table id='page-table'>
+                    <tbody>{pokemon}</tbody>
+                </table>
+            </div> 
+            <div className='nav-control-container'>
+                <button onClick={() => moveTo('previous')}>Previous</button>
+                <button onClick={() => moveTo('next')}>Next</button>
+                <span>Page {currentPage} of {totalPages}</span>
+            </div>
         </div>
     );
 }
