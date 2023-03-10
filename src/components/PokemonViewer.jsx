@@ -1,5 +1,5 @@
 import '../style/PokemonViewer.css'
-import loadingIcon from '../loading.png'
+import pokeballLarge from '../pokeball_large.png'
 
 function PokemonViewer({ focusedPokemon, teamChangeHandler }){
     var types = [];
@@ -25,45 +25,57 @@ function PokemonViewer({ focusedPokemon, teamChangeHandler }){
     const pokemonArt = (
         <div className='sprite'>
             <img 
-            src={focusedPokemon ? focusedPokemon.sprites.other['official-artwork'].front_default : loadingIcon}
+            src={focusedPokemon ? focusedPokemon.sprites.other['official-artwork'].front_default : pokeballLarge}
             alt='Selected pokemon artwork'
             />
         </div>
     );
 
-    const pokemonInfo = (
-        <div className='info'>
-            <h2>
-                <u>
-                {focusedPokemon ? `#${focusedPokemon.id} - ${focusedPokemon.name.toUpperCase()}`: 'null'}
-                </u>
-            </h2>
-            <div>
-                <img 
-                    src={focusedPokemon ? focusedPokemon.sprites.front_default : loadingIcon}
-                    alt='Selected pokemon sprite'
-                />
-                <img 
-                    src={focusedPokemon ? focusedPokemon.sprites.front_shiny : loadingIcon}
-                    alt='Selected pokemon shiny sprite'
-                />
+
+    let pokemonInfo;
+    if (focusedPokemon) {
+        pokemonInfo = (
+            <div className='info'>
+                <h4>
+                    <u>
+                    #{focusedPokemon.id} - {focusedPokemon.name.toUpperCase()}
+                    </u>
+                </h4>
                 <div>
-                    {types}
-                </div>
-                <div>
-                    <table id='stats-table'>
-                        <tbody>
-                            <tr>
-                                <th>Stat</th>
-                                <th>Base Value</th>
-                            </tr>
-                            {stats}
-                        </tbody>
-                    </table>
+                    <img 
+                        src={focusedPokemon.sprites.front_default}
+                        alt='Selected pokemon sprite'
+                    />
+                    <img 
+                        src={focusedPokemon.sprites.front_shiny}
+                        alt='Selected pokemon shiny sprite'
+                    />
+                    <div>
+                        {types}
+                    </div>
+                    <div>
+                        <table id='stats-table'>
+                            <tbody>
+                                <tr>
+                                    <th>Stat</th>
+                                    <th>Base Value</th>
+                                </tr>
+                                {stats}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+    else {
+        pokemonInfo = (
+            <div className='info'>
+                <h4>Select a pokemon for details</h4>
+            </div>
+        );
+    }
+    
 
     const options = (
         <div className='options'>
