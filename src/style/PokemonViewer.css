@@ -4,3 +4,8 @@
     background-color: antiquewhite;
     border-radius: 20px;
 }
+
+.sprites {
+    display: inline-block;
+    align-content: center;
+}

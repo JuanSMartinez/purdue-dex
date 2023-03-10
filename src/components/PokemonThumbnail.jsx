@@ -11,7 +11,7 @@ function PokemonThumbail({infoUrl, onThumbnailClick}) {
         .then((response) => response.json())
         .then((jsonResponse) => setPokemonData(jsonResponse))
         .catch((error) => console.log(error));
-    }, []);
+    }, [infoUrl]);
 
     return (
         <td>

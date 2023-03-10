@@ -26,13 +26,16 @@ function PokemonList({ onPokemonClicked }){
         }, []);
         const pokemonThumbnails = groupedResponses.map((item, i) => {
             const thumbnails = item.map((element) => {
-            return <PokemonThumbail key={element.name} infoUrl={element.url} onThumbnailClick={onPokemonClicked}/>
+            return <PokemonThumbail 
+                    key={element.name} 
+                    infoUrl={element.url} 
+                    onThumbnailClick={onPokemonClicked}/>
         });
-            return (
-                <tr key={i}>
-                    {thumbnails}
-                </tr>
-            );
+        return (
+            <tr key={i}>
+                {thumbnails}
+            </tr>
+        );
         });
         setPokemon(pokemonThumbnails);
         setPageInfo({
@@ -63,7 +66,7 @@ function PokemonList({ onPokemonClicked }){
     useEffect(() => {
         //Loaded webpage for the first time
         moveTo('next');
-    }, [])
+    }, []);
 
     return (
         <div className="PokemonList">
