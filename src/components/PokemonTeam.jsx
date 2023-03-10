@@ -1,5 +1,5 @@
 import '../style/PokemonTeam.css'
-import loadingIcon from '../loading.png'
+import pokeball from '../pokeball.png'
 
 function PokemonTeam({ chosenTeam , onPokemonClicked }) {
     
@@ -8,7 +8,7 @@ function PokemonTeam({ chosenTeam , onPokemonClicked }) {
             return (
                 <button key={i} className='team-member-button'>
                 <img 
-                    src={loadingIcon} 
+                    src={pokeball} 
                     alt='Team member not filled' />
                 </button>
             );
