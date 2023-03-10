@@ -6,10 +6,15 @@ import PokemonTeam from './components/PokemonTeam';
 
 function App() {
   const [focusedPokemonData, setFocusedPokemonData] = useState(null);
-  
+
+  function onClickedPokemon(pokemonData) {
+    console.log(pokemonData)
+    setFocusedPokemonData(pokemonData);
+  }
+
   return (
     <div className="App">
-      <PokemonList />
+      <PokemonList onPokemonClicked={onClickedPokemon}/>
       <PokemonViewer />
       <PokemonTeam />
     </div>

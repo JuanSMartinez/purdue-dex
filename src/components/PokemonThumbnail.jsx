@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import loadingIcon from '../loading.png'
 import '../style/PokemonThumbnail.css'
 
-function PokemonThumbail({infoUrl}) {
+function PokemonThumbail({infoUrl, onThumbnailClick}) {
     const [pokemonData, setPokemonData] = useState(null);
     
     // Get the pokemon information
@@ -15,7 +15,7 @@ function PokemonThumbail({infoUrl}) {
 
     return (
         <td>
-            <button className="thumbnail-button" onClick={() => console.log('Clicked on pokemon thumbnail')}>
+            <button className="thumbnail-button" onClick={() => onThumbnailClick(pokemonData)}>
                 <h3>{pokemonData ? `#${pokemonData.id}` : '?'}</h3>
                 <img 
                     src={pokemonData ? pokemonData.sprites.front_default : loadingIcon} 

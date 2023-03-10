@@ -2,7 +2,7 @@ import "../style/PokemonList.css"
 import PokemonThumbail from "./PokemonThumbnail";
 import { useState, useEffect } from "react";
 
-function PokemonList(){
+function PokemonList({ onPokemonClicked }){
     const [pageInfo, setPageInfo] = useState({
         'previous': null, 
         'next':"https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=9"
@@ -25,7 +25,9 @@ function PokemonList(){
             return accumulator;
         }, []);
         const pokemonThumbnails = groupedResponses.map((item, i) => {
-            const thumbnails = item.map((element)=><PokemonThumbail key={element.name} infoUrl={element.url} />);
+            const thumbnails = item.map((element) => {
+            return <PokemonThumbail key={element.name} infoUrl={element.url} onThumbnailClick={onPokemonClicked}/>
+        });
             return (
                 <tr key={i}>
                     {thumbnails}
