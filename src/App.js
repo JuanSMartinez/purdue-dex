@@ -17,6 +17,7 @@ function App() {
     const alreadyInTeam = nextTeam.some((element) => element !== null && element.id === focusedPokemonData.id);
     if (request === 'add' && spotAvailable && !alreadyInTeam) {
       nextTeam[nextTeam.indexOf(null)] = focusedPokemonData;
+      nextTeam.sort(nullsLastSort);
       setTeam(nextTeam);
     }
     else if (request === 'remove' && atLeastOne) {
@@ -24,6 +25,7 @@ function App() {
       if (index >= 0) {
         nextTeam[index] = null;
       }
+      nextTeam.sort(nullsLastSort);
       setTeam(nextTeam);
     }
   };
@@ -35,6 +37,18 @@ function App() {
       <PokemonTeam chosenTeam={team} onPokemonClicked={onClickedPokemon}/>
     </div>
   );
+}
+
+function nullsLastSort(a, b) {
+  if (a === b){
+    return 0;
+  }
+  if (a === null){
+    return 1;
+  }
+  if (b === null) {
+    return -1;
+  }
 }
 
 export default App;
