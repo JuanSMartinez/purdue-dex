@@ -1,7 +1,7 @@
 import '../style/PokemonViewer.css'
 import loadingIcon from '../loading.png'
 
-function PokemonViewer({ focusedPokemon }){
+function PokemonViewer({ focusedPokemon, teamChangeHandler }){
     var types = [];
     var stats = [];
     if (focusedPokemon !== null){
@@ -65,14 +65,18 @@ function PokemonViewer({ focusedPokemon }){
         </div>
     );
 
+    const options = (
+        <div className='options'>
+            <button onClick={() => teamChangeHandler('add')}>Add to Team</button>
+            <button onClick={() => teamChangeHandler('remove')}>Remove from Team</button>
+        </div>
+    );
+
     return (
         <div className="PokemonViewer">
             {pokemonArt}
             {pokemonInfo}
-            <div className='options'>
-                <button>Add to Team</button>
-                <button>Remove from Team</button>
-            </div>
+            {options}
         </div>
     );
 }
