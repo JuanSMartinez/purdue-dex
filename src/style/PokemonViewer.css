@@ -3,9 +3,120 @@
     padding: 10px;
     background-color: antiquewhite;
     border-radius: 20px;
+    display: grid;
+    grid-template-areas: 
+    'sprite sprite info'
+    'sprite sprite info'
+    'options options info';
 }
 
-.sprites {
-    display: inline-block;
-    align-content: center;
+.sprite {
+    grid-area: sprite;
+    text-align: center;
+    border: solid;
+    border-radius: 20px;
+    margin: 2px;
+}
+
+.info {
+    grid-area: info;
+    text-align: center;
+    margin: 0 auto 0 auto;
+    border: solid;
+    border-radius: 20px;   
+    margin: 2px; 
+    padding: 5px;
+}
+
+.options {
+    grid-area: options;
+    margin: 2px;
+    border: solid;
+    border-radius: 20px;   
+    margin: 2px; 
+    padding: 20px;
+}
+
+#stats-table {
+    margin-top: 10px;
+    border-collapse: collapse;
+  }
+  
+#stats-table td, #stats-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#stats-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#stats-table tr:nth-child(odd){background-color: #c0c0c0;}
+
+#stats-table tr:hover {background-color: #FFCC00;}
+
+#stats-table th {
+padding-top: 10px;
+padding-bottom: 10px;
+text-align: center;
+background-color: #0A285F;
+color: white;
+}
+
+.type-box {
+    border-radius: 20px;
+}
+
+/*Pokemon Type selectors*/
+[type=normal] {
+    background-color: #A8A77A;
+}
+[type=fire]{
+    background-color: #EE8130;
+}
+[type=water]{
+    background-color: #6390F0;
+}
+[type=electric]{
+    background-color: #F7D02C;
+}
+[type=grass]{
+    background-color: #7AC74C;
+}
+[type=ice]{
+    background-color: #96D9D6;
+}
+[type=fighting]{
+    background-color: #C22E28;
+}
+[type=poison]{
+    background-color: #A33EA1;
+}
+[type=ground]{
+    background-color: #E2BF65;
+}
+[type=flying]{
+    background-color: #A98FF3;
+}
+[type=psychic]{
+    background-color: #F95587;
+}
+[type=bug]{
+    background-color: #A6B91A;
+}
+[type=rock]{
+    background-color: #B6A136;
+}
+[type=ghost]{
+    background-color: #735797;
+}
+[type=dragon]{
+    background-color: #6F35FC;
+}
+[type=dark]{
+    background-color: #705746;
+}
+[type=steel]{
+    background-color: #B7B7CE;
+}
+[type=fairy]{
+    background-color: #D685AD;
 }
