@@ -24,10 +24,24 @@
 }
 
 .nav-button {
+    margin: 3px;
     cursor: pointer;
     appearance: none;
     background: none;
     border: none;
+}
+
+.nav-button img {
+    border-radius: 50%;
+    box-shadow: 0 3px #999;
+}
+
+.nav-button:active {
+    transform: translateY(4px);
+}
+
+.nav-button:active img {
+    box-shadow: 0 1px #999;
 }
 
 .page-info {

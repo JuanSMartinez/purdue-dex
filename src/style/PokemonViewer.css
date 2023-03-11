@@ -54,6 +54,28 @@
     color: white;
 }
 
+.option-button {
+    padding: 15px 25px;
+    text-align: center;
+    cursor: pointer;
+    color: #ececec;
+    background-color: #0075BE;
+    border: solid;
+    border-color: #0A285F;
+    border-radius: 15px;
+    box-shadow: 0 9px #999999;
+  }
+  
+.option-button:hover {
+    background-color: #5EBDFC;
+}
+  
+.option-button:active {
+    background-color: #0075BE;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
 #stats-table {
     margin-top: 10px;
     border-collapse: collapse;

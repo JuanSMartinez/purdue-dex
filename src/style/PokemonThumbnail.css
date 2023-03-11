@@ -12,6 +12,16 @@
     box-shadow: 3px 3px 1px #855AC9;
 }
 
+.thumbnail-button:hover {
+    background-color: #bbc4a8;
+}
+
+.thumbnail-button:active {
+    background-color: #bbc4a8;
+    box-shadow: 1px 1px #621ed0;
+    transform: translateY(2px);
+}
+
 .thumbnail-info {
     border: solid;
     border-radius: 5px;

@@ -3,7 +3,7 @@
     padding: 10px;
     border-radius: 20px;
     background-color: #FB1B1B;
-    box-shadow: 5px 5px 2px;
+    box-shadow: 0 9px #000000;
     display: grid;
     grid-template-columns: 50% 49%;
     grid-template-areas: 
