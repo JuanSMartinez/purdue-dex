@@ -15,18 +15,31 @@ function App() {
     const spotAvailable = nextTeam.some((element) => element === null);
     const atLeastOne = nextTeam.some((element) => element !== null);
     const alreadyInTeam = nextTeam.some((element) => element !== null && element.id === focusedPokemonData.id);
-    if (request === 'add' && spotAvailable && !alreadyInTeam) {
-      nextTeam[nextTeam.indexOf(null)] = focusedPokemonData;
-      nextTeam.sort(nullsLastSort);
-      setTeam(nextTeam);
+    if (request === 'add') {
+      if (spotAvailable && !alreadyInTeam) {
+        nextTeam[nextTeam.indexOf(null)] = focusedPokemonData;
+        nextTeam.sort(nullsLastSort);
+        setTeam(nextTeam);
+      }
+      else{
+        alert("The pokemon is already on your team or there are no more spots in the team.")
+      }
     }
-    else if (request === 'remove' && atLeastOne) {
+    else if (request === 'remove') {
+      if (!atLeastOne) {
+        alert("No more Pokemon to remove in the team");
+        return;
+      }
       const index = nextTeam.indexOf(focusedPokemonData);
       if (index >= 0) {
         nextTeam[index] = null;
+        nextTeam.sort(nullsLastSort);
+        setTeam(nextTeam);
       }
-      nextTeam.sort(nullsLastSort);
-      setTeam(nextTeam);
+      else {
+        alert("The Pokemon is not in the team.")
+      }
+      
     }
   };
 
