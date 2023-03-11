@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PokemonList from './components/PokemonList';
 import PokemonViewer from './components/PokemonViewer';
 import PokemonTeam from './components/PokemonTeam';
+import DatabaseManager from './components/DatabaseManager';
 
 function App() {
   const [focusedPokemonData, setFocusedPokemonData] = useState(null);
@@ -48,6 +49,7 @@ function App() {
       <PokemonList onPokemonClicked={onClickedPokemon}/>
       <PokemonViewer focusedPokemon={focusedPokemonData} teamChangeHandler={onTeamChange}/>
       <PokemonTeam chosenTeam={team} onPokemonClicked={onClickedPokemon}/>
+      <DatabaseManager />
     </div>
   );
 }

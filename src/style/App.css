@@ -8,6 +8,7 @@
     grid-template-columns: 50% 49%;
     grid-template-areas: 
         'viewer list'
-        'team list';
+        'team list'
+        'db-management spare';
     gap: 10px;
 }
