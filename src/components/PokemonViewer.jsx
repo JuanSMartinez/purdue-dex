@@ -82,8 +82,8 @@ function PokemonViewer({ focusedPokemon, teamChangeHandler }){
 
     const options = (
         <div className='options'>
-            <button onClick={() => teamChangeHandler('add')}>Add to Team</button>
-            <button onClick={() => teamChangeHandler('remove')}>Remove from Team</button>
+            <button className='option-button' onClick={() => teamChangeHandler('add')}><b>Add to Team</b></button>
+            <button className='option-button' onClick={() => teamChangeHandler('remove')}><b>Remove from Team</b></button>
         </div>
     );
 

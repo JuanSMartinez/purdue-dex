@@ -3,6 +3,9 @@
     padding: 10px;
     background-color: antiquewhite;
     border-radius: 20px;
+    border-color:slategray;
+    border-style: inset;
+    border-width: 5px;
     display: grid;
     grid-template-areas: 
     'sprite sprite info'
@@ -35,6 +38,20 @@
     border-radius: 20px;   
     margin: 2px; 
     padding: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.option-button {
+    cursor: pointer;
+    border: solid;
+    border-radius: 5px;
+    margin: 5%;
+    padding: 10px;
+    background-color: #0075BE;
+    border-color: #0A285F;
+    text-align: center;
+    color: white;
 }
 
 #stats-table {

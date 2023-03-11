@@ -6,17 +6,37 @@
     padding: 10px;
     background-color: #A8C64E;
     border-radius: 20px;
+    border-color:slategray;
+    border-style: inset;
+    border-width: 5px;
 }
 
 .nav-control-container{
-    padding: 10px;
     background-color:antiquewhite;
     border-radius: 20px;
-    margin-top: 50px;
+    margin-top: 10px;
     border: solid;
-    border-color:beige;
+    border-color:slategray;
     border-width: 5px;
     border-style: inset;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.nav-button {
+    cursor: pointer;
+    appearance: none;
+    background: none;
+    border: none;
+}
+
+.page-info {
+    text-align: center;
+    border: solid;
+    border-radius: 10px;
+    border-color: #6f8334;
+    background-color: #A8C64E;
+    margin: 5px 0 5px 0;
 }
 
 #page-table {

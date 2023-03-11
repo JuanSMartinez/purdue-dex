@@ -3,6 +3,9 @@
     padding: 10px;
     background-color: antiquewhite;
     border-radius: 20px;
+    border-color:slategray;
+    border-style: inset;
+    border-width: 5px;
 }
 
 .team-member-button {

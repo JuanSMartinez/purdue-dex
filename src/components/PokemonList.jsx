@@ -1,5 +1,7 @@
 import "../style/PokemonList.css"
 import PokemonThumbail from "./PokemonThumbnail";
+import buttonLeft from "../button_left.png";
+import buttonRight from "../button_right.png";
 import { useState, useEffect } from "react";
 
 function PokemonList({ onPokemonClicked }){
@@ -77,9 +79,13 @@ function PokemonList({ onPokemonClicked }){
                 </table>
             </div> 
             <div className='nav-control-container'>
-                <button onClick={() => moveTo('previous')}>Previous</button>
-                <button onClick={() => moveTo('next')}>Next</button>
-                <span>Page {currentPage} of {totalPages}</span>
+                <button onClick={() => moveTo('previous')} className='nav-button'>
+                    <img src={buttonLeft} alt="Left page button" />
+                </button>
+                <p className='page-info'><b>Page {currentPage} of {totalPages}</b></p>
+                <button onClick={() => moveTo('next')} className='nav-button'>
+                    <img src={buttonRight} alt="Right page button" />
+                </button>
             </div>
         </div>
     );
