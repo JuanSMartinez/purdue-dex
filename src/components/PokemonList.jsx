@@ -3,11 +3,19 @@ import PokemonThumbail from "./PokemonThumbnail";
 import { useState, useEffect } from "react";
 
 function PokemonList({ onPokemonClicked }){
+    // Limit of pokemon per page
+    const pokemonPerPage = 12;
+
+    // State of the current page displayed
     const [pageInfo, setPageInfo] = useState({
         'previous': null, 
-        'next':"https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=12"
+        'next': `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${pokemonPerPage}`
     });
-    const [pokemon, setPokemon] = useState();
+
+    // State of the array of pokemon data displayed
+    const [pokemon, setPokemon] = useState(Array(pokemonPerPage).fill(null));
+
+    // States of the total pages to navigate and the current page
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -16,33 +24,18 @@ function PokemonList({ onPokemonClicked }){
         return fetchResponse.json();
     };
 
-    // Handle the JSON response from the fetch URL
+    // Handle the JSON response from the fetched URL
     const handleResponse = (jsonResponse) => {
-        const groupedResponses = jsonResponse.results.reduce((accumulator, _, currentIndex, array) => {
-            if (currentIndex % 4 === 0){
-                accumulator.push(array.slice(currentIndex, currentIndex + 4));
-            }
-            return accumulator;
-        }, []);
-        const pokemonThumbnails = groupedResponses.map((item, i) => {
-            const thumbnails = item.map((element) => {
-            return <PokemonThumbail 
-                    key={element.name} 
-                    infoUrl={element.url} 
-                    onThumbnailClick={onPokemonClicked}/>
+        const updatedPokemon = pokemon.slice();
+        jsonResponse.results.forEach( (element, i) => {
+            updatedPokemon[i] = <PokemonThumbail key={i} infoUrl={element.url} onThumbnailClick={onPokemonClicked} />
+            setPokemon(updatedPokemon);
         });
-        return (
-            <tr key={i}>
-                {thumbnails}
-            </tr>
-        );
-        });
-        setPokemon(pokemonThumbnails);
         setPageInfo({
             'next': jsonResponse.next,
             'previous': jsonResponse.previous
         })
-        setTotalPages(Math.ceil(jsonResponse.count / 12));
+        setTotalPages(Math.ceil(jsonResponse.count / pokemonPerPage));
     };
 
     // Handle the error of a failed fecthed URL
@@ -50,8 +43,8 @@ function PokemonList({ onPokemonClicked }){
         console.log(error);
     };
 
-    //Call API to get pokemon
-    const moveTo = function (page) {
+    //Call API to get pokemon using a promise
+    function moveTo (page) {
         if (pageInfo[page]){
             fetch(pageInfo[page])
             .then(handleFetch)
@@ -63,16 +56,24 @@ function PokemonList({ onPokemonClicked }){
         }
     }
 
-    useEffect(() => {
-        //Loaded webpage for the first time
-        moveTo('next');
-    }, []);
+    // Trigger moving to the first page when page loads
+    useEffect(() => moveTo('next'), []);
 
     return (
         <div className="PokemonList">
             <div className='page-container'>
                 <table id='page-table'>
-                    <tbody>{pokemon}</tbody>
+                    <tbody>
+                        <tr>
+                        {pokemon.slice(0, 4)}
+                        </tr>
+                        <tr>
+                        {pokemon.slice(4, 8)}
+                        </tr>
+                        <tr>
+                        {pokemon.slice(8, 12)}
+                        </tr>
+                    </tbody>
                 </table>
             </div> 
             <div className='nav-control-container'>
