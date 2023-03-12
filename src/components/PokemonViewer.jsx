@@ -82,13 +82,13 @@ function PokemonViewer({ focusedPokemon, teamChangeHandler }){
 
     const options = (
         <div className='options'>
-            <button className='option-button' onClick={() => teamChangeHandler('add')}><b>Add to Team</b></button>
-            <button className='option-button' onClick={() => teamChangeHandler('remove')}><b>Remove from Team</b></button>
+            <button className='pokedex-button' onClick={() => teamChangeHandler('add')}><b>Add to Team</b></button>
+            <button className='pokedex-button' onClick={() => teamChangeHandler('remove')}><b>Remove from Team</b></button>
         </div>
     );
 
     return (
-        <div className="PokemonViewer">
+        <div className="PokemonViewer pokedex-panel">
             {pokemonArt}
             {pokemonInfo}
             {options}

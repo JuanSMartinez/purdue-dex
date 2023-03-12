@@ -5,20 +5,11 @@
 .page-container {
     padding: 10px;
     background-color: #A8C64E;
-    border-radius: 20px;
-    border-color:slategray;
-    border-style: inset;
-    border-width: 5px;
 }
 
 .nav-control-container{
     background-color:antiquewhite;
-    border-radius: 20px;
     margin-top: 10px;
-    border: solid;
-    border-color:slategray;
-    border-width: 5px;
-    border-style: inset;
     display: grid;
     grid-template-columns: auto auto auto;
 }

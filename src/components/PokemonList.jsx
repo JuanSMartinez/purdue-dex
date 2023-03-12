@@ -63,7 +63,7 @@ function PokemonList({ onPokemonClicked }){
 
     return (
         <div className="PokemonList">
-            <div className='page-container'>
+            <div className='page-container pokedex-panel'>
                 <table id='page-table'>
                     <tbody>
                         <tr>
@@ -78,7 +78,7 @@ function PokemonList({ onPokemonClicked }){
                     </tbody>
                 </table>
             </div> 
-            <div className='nav-control-container'>
+            <div className='nav-control-container pokedex-panel'>
                 <button onClick={() => moveTo('previous')} className='nav-button'>
                     <img src={buttonLeft} alt="Left page button" />
                 </button>

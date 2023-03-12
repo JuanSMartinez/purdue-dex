@@ -1,31 +1,5 @@
 .DatabaseManager {
     grid-area: 'db-management';
-    border: solid;
-    border-radius: 20px;
-    border-style: inset;
     background-color: antiquewhite;
-}
-  
-.db-button {    
-    outline: none;
-    margin: 0 10px 0 10px;
-    text-align: center;
-    cursor: pointer;
-    color: #000000;
-    background-color:aliceblue;
-    border-radius: 15px;
-    border: solid;
-    margin: 2px;
-    box-shadow: 3px 3px 1px #0075BE;
-}
-
-.db-button:hover {
-    background-color: #FFCC00;
-}
-  
-.db-button:active {
-    background-color: #D5A100;
-    box-shadow: 1px 1px 1px #0075BE;
-    transform: translateY(2px);
-    transform: translateX(2px);
+    padding: 10px;
 }

@@ -2,23 +2,4 @@
     grid-area: team;
     padding: 10px;
     background-color: antiquewhite;
-    border-radius: 20px;
-    border-color:slategray;
-    border-style: inset;
-    border-width: 5px;
-}
-
-.team-member-button {
-    border: solid;
-    margin: 2px;
-    border-radius: 20px;
-    cursor: pointer;
-    appearance: none;
-    box-shadow: 3px 3px 1px #0075BE;
-}
-
-.team-member-button:active {
-    box-shadow: 1px 1px 1px #0075BE;
-    transform: translateY(2px);
-    transform: translateX(2px);
 }

@@ -8,7 +8,36 @@
     grid-template-columns: 50% 49%;
     grid-template-areas: 
         'viewer list'
-        'team list'
-        'db-management spare';
+        'team db-management';
     gap: 10px;
+}
+
+.pokedex-button {    
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    color: #000000;
+    background-color:aliceblue;
+    border-radius: 15px;
+    border: solid;
+    margin: 2px;
+    box-shadow: 3px 3px 1px #0075BE;
+}
+
+.pokedex-button:hover {
+    background-color: #FFCC00;
+}
+  
+.pokedex-button:active {
+    background-color: #D5A100;
+    box-shadow: 1px 1px 1px #0075BE;
+    transform: translateY(2px);
+    transform: translateX(2px);
+}
+
+.pokedex-panel {
+    border-radius: 20px;
+    border-color:slategray;
+    border-style: inset;
+    border-width: 5px;
 }

@@ -6,7 +6,7 @@ function PokemonTeam({ chosenTeam , onPokemonClicked }) {
     const teamMembers = chosenTeam.map((pokemonData, i) => {
         if(pokemonData === null){
             return (
-                <button key={i} className='team-member-button'>
+                <button key={i} className='pokedex-button'>
                 <img 
                     src={pokeball} 
                     alt='Team member not filled' />
@@ -14,7 +14,7 @@ function PokemonTeam({ chosenTeam , onPokemonClicked }) {
             );
         }
         return (
-            <button key={i} className='team-member-button' onClick={() => onPokemonClicked(pokemonData)}>
+            <button key={i} className='pokedex-button' onClick={() => onPokemonClicked(pokemonData)}>
                 <img 
                     src={pokemonData.sprites.front_default} 
                     alt={`Team thumbnail for ${pokemonData.name}`} />
@@ -23,7 +23,7 @@ function PokemonTeam({ chosenTeam , onPokemonClicked }) {
     });
 
     return (
-        <div className="PokemonTeam">
+        <div className="PokemonTeam pokedex-panel">
             <div>
                 {teamMembers}
             </div>
