@@ -16,3 +16,9 @@
     appearance: none;
     box-shadow: 3px 3px 1px #0075BE;
 }
+
+.team-member-button:active {
+    box-shadow: 1px 1px 1px #0075BE;
+    transform: translateY(2px);
+    transform: translateX(2px);
+}
