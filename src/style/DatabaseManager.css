@@ -1,5 +1,6 @@
 .DatabaseManager {
     grid-area: 'db-management';
     background-color: antiquewhite;
-    padding: 10px;
+    text-align: center;
+    margin: auto 0;
 }
