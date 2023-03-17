@@ -31,8 +31,8 @@ function PokemonList({ onPokemonClicked }){
         const updatedPokemon = pokemon.slice();
         jsonResponse.results.forEach( (element, i) => {
             updatedPokemon[i] = <PokemonThumbail key={i} infoUrl={element.url} onThumbnailClick={onPokemonClicked} />
-            setPokemon(updatedPokemon);
         });
+        setPokemon(updatedPokemon);
         setPageInfo({
             'next': jsonResponse.next,
             'previous': jsonResponse.previous
