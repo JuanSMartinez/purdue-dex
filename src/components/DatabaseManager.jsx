@@ -21,18 +21,31 @@ function DatabaseManager({ chosenTeam }){
             alert('Cannot save an empty team. Make some selections first by clicking on Pokemon and then "Add to Team"');
             return;
         }
+
         let data = {
             created_on: (new Date()).toISOString(),
             pokemon: chosenTeam
         }
-        const dataRef = ref(database, `/${teamName}`);
-        set(dataRef, data)
-        .then(alert(`Pokemon team "${teamName}" was saved to the database!`))
-        .catch(error => {
-            alert("Failed to create team. See log for details");
-            console.log(error);
-        });
+        const dataRef = ref(database, `/teams/${teamName}`);
+        // Check if the team already exists. After the query is complete, create the data if it didn't exist 
+        onValue(dataRef, (snapshot) => {
+            if (snapshot.val() !== null) {
+                alert(`A team by the same name already exists in the database. Use the Update button if you wish to update it.`
+                );
+                return;
+            }
+            // Set the data
+            set(dataRef, data)
+            .then(alert(`Pokemon team "${teamName}" was saved to the database!`))
+            .catch(error => {
+                alert("Failed to create team. See log for details");
+                console.log(error);
+            });
+
+        }, {onlyOnce: true});
+        
     }
+
 
     return (
         <div className='DatabaseManager pokedex-panel'>
