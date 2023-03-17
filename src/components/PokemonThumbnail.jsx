@@ -7,10 +7,14 @@ function PokemonThumbail({infoUrl, onThumbnailClick}) {
     
     // Get the pokemon information
     useEffect(() => {
-        fetch(infoUrl)
-        .then((response) => response.json())
-        .then((jsonResponse) => setPokemonData(jsonResponse))
-        .catch((error) => console.log(error));
+        if(infoUrl) {
+            fetch(infoUrl)
+            .then((response) => response.json())
+            .then((jsonResponse) => setPokemonData(jsonResponse))
+            .catch((error) => console.log(error));
+        } else {
+            setPokemonData(null);
+        }
     }, [infoUrl]);
 
     return (

@@ -48,6 +48,14 @@ function PokemonList({ onPokemonClicked }){
     //Call API to get pokemon using a promise
     function moveTo (page) {
         if (pageInfo[page]){
+            // Reset all pokemon
+            const resetPokemon = pokemon.slice();
+            let i;
+            for(i = 0; i < pokemonPerPage; i++) {
+                resetPokemon[i] = <PokemonThumbail key={i} infoUrl={null} onThumbnailClick={onPokemonClicked} />;
+            }
+            setPokemon(resetPokemon);
+            
             fetch(pageInfo[page])
             .then(handleFetch)
             .then((response) => {

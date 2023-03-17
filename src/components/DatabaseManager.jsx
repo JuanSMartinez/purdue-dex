@@ -1,6 +1,14 @@
 import '../style/DatabaseManager.css'
+import { database } from '../database.js';
+import { set, update, onValue, remove, ref } from 'firebase/database';
+import { useState } from 'react';
 
 function DatabaseManager(){
+    const [teamName, setTeamName] = useState('');
+
+    function handleInputChange(event){
+        setTeamName(event.target.value);
+    }
 
     return (
         <div className='DatabaseManager pokedex-panel'>
@@ -9,7 +17,7 @@ function DatabaseManager(){
                 <button className='pokedex-button' onClick={ShowInstructions}><b>?</b></button>
             </h2>
             <label>
-                <b>Team name in DB:</b> <input name='team_name'></input>
+                <b>Team name in DB:</b> <input name='team_name' onChange={handleInputChange}></input>
             </label>
             <button className='pokedex-button'><b>Create</b></button>
             <button className='pokedex-button'><b>Update</b></button>
