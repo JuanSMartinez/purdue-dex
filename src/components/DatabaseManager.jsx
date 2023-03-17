@@ -4,6 +4,7 @@ import { set, update, onValue, remove, ref } from 'firebase/database';
 import { useState } from 'react';
 
 function DatabaseManager({ chosenTeam, onReadDatabase }){
+    // State of the team name given in the text input
     const [teamName, setTeamName] = useState('');
 
     // Handle a change in the team name due to the input
@@ -11,7 +12,7 @@ function DatabaseManager({ chosenTeam, onReadDatabase }){
         setTeamName(event.target.value);
     }
 
-    // Create a new team with the name give
+    // Create a new team with the name given
     function createNewTeam(){
         if (teamName === '' || teamName.includes(' ')){
             alert('Please enter a team name without spaces');

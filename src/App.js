@@ -6,13 +6,17 @@ import PokemonTeam from './components/PokemonTeam';
 import DatabaseManager from './components/DatabaseManager';
 
 function App() {
+  // States of the pokemon being focused in the viewer and the current selection of pokemon in a team
   const [focusedPokemonData, setFocusedPokemonData] = useState(null);
   const [team, setTeam] = useState(Array(6).fill(null));
 
+  // Anonymous function passed to the list and team components for when a pokemon is clicked
   const onClickedPokemon = (pokemonData) => setFocusedPokemonData(pokemonData);
 
+  // Anonymous function passed to the database component to change the state of the team list with remote data
   const onReadTeamFromDatabase = (remoteTeamData) => setTeam(remoteTeamData);
 
+  // Handle a request to add or remove a focused pokemon from the team list
   const onTeamChange = (request) => {
     var nextTeam = team.slice();
     const spotAvailable = nextTeam.some((element) => element === null);
@@ -56,6 +60,7 @@ function App() {
   );
 }
 
+// Sorting function that leaves all nulls at the tail of the array
 function nullsLastSort(a, b) {
   if (a === b){
     return 0;

@@ -1,18 +1,34 @@
 import '../style/PokemonViewer.css'
 import pokeballLarge from '../pokeball_large.png'
+import { useEffect, useState } from 'react';
 
 function PokemonViewer({ focusedPokemon, teamChangeHandler }){
-    var types = [];
-    var stats = [];
-    if (focusedPokemon !== null){
-        types = focusedPokemon.types.map((typeJson, i) => {
+
+    // States of information and artwork of a focused pokemon
+    const [pokemonArt, setPokemonArt] = useState(pokeballLarge);
+    const [info, setInfo] = useState(
+        <div className='info'>
+            <h4>Select a pokemon for details</h4>
+        </div>
+    );
+
+
+    // Load the art and info when a change occurrs on the focused pokemon
+    useEffect(() => {
+        // If there is no pokemon focused, leave the default states unchanged
+        if(!focusedPokemon) {
+            return;
+        }
+
+        let newTypes = focusedPokemon.types.map((typeJson, i) => {
             return (
                 <div key={i} type={typeJson.type.name} className='type-box'>
                     <b>{typeJson.type.name}</b>
                 </div>
             );
         });
-        stats = focusedPokemon.stats.map((statInfo, i) => {
+
+        let newStats = focusedPokemon.stats.map((statInfo, i) => {
             return (
                 <tr key={i}>
                     <td>{statInfo.stat.name}</td>
@@ -20,33 +36,13 @@ function PokemonViewer({ focusedPokemon, teamChangeHandler }){
                 </tr>
             );
         });
-    }
 
-    const pokemonArt = (
-        <div className='sprite'>
-            <img 
-            src={focusedPokemon ? focusedPokemon.sprites.other['official-artwork'].front_default : pokeballLarge}
-            alt='Selected pokemon artwork'
-            width='70%'
-            />
-        </div>
-    );
-
-
-    let pokemonInfo;
-    if (focusedPokemon) {
-        pokemonInfo = (
+        //Load and set the pokemon information using the types and stats
+        let newInfo = (
             <div className='info'>
-                <h4>
-                    <u>
-                    #{focusedPokemon.id} - {focusedPokemon.name.toUpperCase()}
-                    </u>
-                </h4>
+                <h4><u>#{focusedPokemon.id} - {focusedPokemon.name.toUpperCase()}</u></h4>
                 <div>
-                    <img 
-                        src={focusedPokemon.sprites.front_default}
-                        alt='Selected pokemon sprite'
-                    />
+                    <img src={focusedPokemon.sprites.front_default} alt="Selected pokemon sprite"/>
                     {focusedPokemon.sprites.front_shiny ?
                         <img 
                             src={focusedPokemon.sprites.front_shiny}
@@ -54,7 +50,7 @@ function PokemonViewer({ focusedPokemon, teamChangeHandler }){
                         /> : <></>
                     }
                     <div>
-                        {types}
+                        {newTypes}
                     </div>
                     <div>
                         <table id='stats-table'>
@@ -63,35 +59,39 @@ function PokemonViewer({ focusedPokemon, teamChangeHandler }){
                                     <th>Stat</th>
                                     <th>Base Value</th>
                                 </tr>
-                                {stats}
+                                {newStats}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         );
-    }
-    else {
-        pokemonInfo = (
-            <div className='info'>
-                <h4>Select a pokemon for details</h4>
-            </div>
-        );
-    }
-    
 
-    const options = (
-        <div className='options'>
-            <button className='pokedex-button' onClick={() => teamChangeHandler('add')}><b>Add to Team</b></button>
-            <button className='pokedex-button' onClick={() => teamChangeHandler('remove')}><b>Remove from Team</b></button>
+        // Set the info
+        setInfo(newInfo);
+        // Set the pokemon art
+        setPokemonArt(focusedPokemon.sprites.other['official-artwork'].front_default);
+    }, [focusedPokemon]);
+
+    const pokemonArtJSX = (
+        <div className='sprite'>
+            <img 
+            src={pokemonArt}
+            alt='Selected pokemon artwork'
+            width='70%'
+            />
         </div>
     );
+    
 
     return (
         <div className="PokemonViewer pokedex-panel">
-            {pokemonArt}
-            {pokemonInfo}
-            {options}
+            {pokemonArtJSX}
+            {info}
+            <div className='options'>
+                <button className='pokedex-button' onClick={() => teamChangeHandler('add')}><b>Add to Team</b></button>
+                <button className='pokedex-button' onClick={() => teamChangeHandler('remove')}><b>Remove from Team</b></button>
+            </div>
         </div>
     );
 }

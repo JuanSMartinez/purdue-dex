@@ -3,9 +3,10 @@ import loadingIcon from '../loading.png'
 import '../style/PokemonThumbnail.css'
 
 function PokemonThumbail({infoUrl, onThumbnailClick}) {
+    // State of the pokemon data represented in the thumbnail
     const [pokemonData, setPokemonData] = useState(null);
     
-    // Get the pokemon information
+    // Get the pokemon information when there is a change in the URL
     useEffect(() => {
         if(infoUrl) {
             fetch(infoUrl)

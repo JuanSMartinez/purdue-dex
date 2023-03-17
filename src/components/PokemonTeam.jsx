@@ -3,6 +3,7 @@ import pokeball from '../pokeball.png'
 
 function PokemonTeam({ chosenTeam , onPokemonClicked }) {
     
+    // Snapshots of the currently selected pokemon in the team
     const teamMembers = chosenTeam.map((pokemonData, i) => {
         if(pokemonData === null){
             return (
