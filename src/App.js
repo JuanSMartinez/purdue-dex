@@ -11,6 +11,8 @@ function App() {
 
   const onClickedPokemon = (pokemonData) => setFocusedPokemonData(pokemonData);
 
+  const onReadTeamFromDatabase = (remoteTeamData) => setTeam(remoteTeamData);
+
   const onTeamChange = (request) => {
     var nextTeam = team.slice();
     const spotAvailable = nextTeam.some((element) => element === null);
@@ -49,7 +51,7 @@ function App() {
       <PokemonList onPokemonClicked={onClickedPokemon}/>
       <PokemonViewer focusedPokemon={focusedPokemonData} teamChangeHandler={onTeamChange}/>
       <PokemonTeam chosenTeam={team} onPokemonClicked={onClickedPokemon}/>
-      <DatabaseManager chosenTeam={team}/>
+      <DatabaseManager chosenTeam={team} onReadDatabase={onReadTeamFromDatabase}/>
     </div>
   );
 }

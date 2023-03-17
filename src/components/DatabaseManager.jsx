@@ -3,7 +3,7 @@ import { database } from '../database.js';
 import { set, update, onValue, remove, ref } from 'firebase/database';
 import { useState } from 'react';
 
-function DatabaseManager({ chosenTeam }){
+function DatabaseManager({ chosenTeam, onReadDatabase }){
     const [teamName, setTeamName] = useState('');
 
     // Handle a change in the team name due to the input
@@ -75,7 +75,6 @@ function DatabaseManager({ chosenTeam }){
             alert('Please enter a team name without spaces');
             return;
         }
-        // remove
         const dataRef = ref(database, `/teams/${teamName}`);
         onValue(dataRef, (snapshot) => {
             if (snapshot.val() === null) {
@@ -93,6 +92,28 @@ function DatabaseManager({ chosenTeam }){
         }, {onlyOnce: true});
     }
 
+    // Read a team from the database and display it on the team panel
+    function readTeam() {
+        if (teamName === '' || teamName.includes(' ')){
+            alert('Please enter a team name without spaces');
+            return;
+        }
+
+        const dataRef = ref(database, `/teams/${teamName}`);
+        onValue(dataRef, (snapshot) => {
+            if (snapshot.val() === null) {
+                alert('The team you are trying to retrieve does not exist in the database.');
+                return;
+            }
+            // Gather the pokemon from the response
+            const pokemon = snapshot.val()['pokemon'];
+            // update the state of the team
+            const remoteTeam = Array(6).fill(null);
+            pokemon.forEach((element, i) => remoteTeam[i] = element);
+            onReadDatabase(remoteTeam);
+        }, {onlyOnce: true});
+    }
+
 
     return (
         <div className='DatabaseManager pokedex-panel'>
@@ -105,7 +126,7 @@ function DatabaseManager({ chosenTeam }){
             </label>
             <button className='pokedex-button' onClick={createNewTeam}><b>Create</b></button>
             <button className='pokedex-button' onClick={updateTeam}><b>Update</b></button>
-            <button className='pokedex-button'><b>Read</b></button>
+            <button className='pokedex-button' onClick={readTeam}><b>Read</b></button>
             <button className='pokedex-button' onClick={deleteTeam}><b>Delete</b></button>
         </div>
     );
