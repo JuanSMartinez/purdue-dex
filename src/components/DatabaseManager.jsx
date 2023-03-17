@@ -24,6 +24,7 @@ function DatabaseManager({ chosenTeam }){
 
         let data = {
             created_on: (new Date()).toISOString(),
+            updated_on: '',
             pokemon: chosenTeam
         }
         const dataRef = ref(database, `/teams/${teamName}`);
@@ -43,7 +44,29 @@ function DatabaseManager({ chosenTeam }){
             });
 
         }, {onlyOnce: true});
-        
+    }
+
+    // Update a team with the existing selection
+    function updateTeam() {
+        const dataRef = ref(database, `/teams/${teamName}`);
+        onValue(dataRef, (snapshot) => {
+            if (snapshot.val() === null) {
+                alert('The team you are trying to update does not exist in the database.');
+                return;
+            }
+            // update the data
+            let data = {
+                updated_on: (new Date()).toISOString(),
+                pokemon: chosenTeam
+            }
+            update(dataRef, data)
+            .then(alert(`Pokemon team "${teamName}" was updated in the database!`))
+            .catch(error => {
+                alert("Failed to update the team. See log for details");
+                console.log(error);
+            });
+
+        }, {onlyOnce: true});
     }
 
 
@@ -57,8 +80,8 @@ function DatabaseManager({ chosenTeam }){
                 <b>Team name in DB:</b> <input name='team_name' onChange={handleInputChange}></input>
             </label>
             <button className='pokedex-button' onClick={createNewTeam}><b>Create</b></button>
-            <button className='pokedex-button'><b>Update</b></button>
-            <button className='pokedex-button'><b>Read </b></button>
+            <button className='pokedex-button' onClick={updateTeam}><b>Update</b></button>
+            <button className='pokedex-button'><b>Read</b></button>
             <button className='pokedex-button'><b>Delete</b></button>
         </div>
     );
