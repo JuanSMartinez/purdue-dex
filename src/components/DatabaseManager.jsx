@@ -3,11 +3,35 @@ import { database } from '../database.js';
 import { set, update, onValue, remove, ref } from 'firebase/database';
 import { useState } from 'react';
 
-function DatabaseManager(){
+function DatabaseManager({ chosenTeam }){
     const [teamName, setTeamName] = useState('');
 
+    // Handle a change in the team name due to the input
     function handleInputChange(event){
         setTeamName(event.target.value);
+    }
+
+    // Create a new team with the name give
+    function createNewTeam(){
+        if (teamName === '' || teamName.includes(' ')){
+            alert('Please enter a team name without spaces');
+            return;
+        }
+        if(!chosenTeam || chosenTeam.every(element => element === null)) {
+            alert('Cannot save an empty team. Make some selections first by clicking on Pokemon and then "Add to Team"');
+            return;
+        }
+        let data = {
+            created_on: (new Date()).toISOString(),
+            pokemon: chosenTeam
+        }
+        const dataRef = ref(database, `/${teamName}`);
+        set(dataRef, data)
+        .then(alert(`Pokemon team "${teamName}" was saved to the database!`))
+        .catch(error => {
+            alert("Failed to create team. See log for details");
+            console.log(error);
+        });
     }
 
     return (
@@ -19,7 +43,7 @@ function DatabaseManager(){
             <label>
                 <b>Team name in DB:</b> <input name='team_name' onChange={handleInputChange}></input>
             </label>
-            <button className='pokedex-button'><b>Create</b></button>
+            <button className='pokedex-button' onClick={createNewTeam}><b>Create</b></button>
             <button className='pokedex-button'><b>Update</b></button>
             <button className='pokedex-button'><b>Read </b></button>
             <button className='pokedex-button'><b>Delete</b></button>
