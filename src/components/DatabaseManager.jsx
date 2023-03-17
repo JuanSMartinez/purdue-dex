@@ -69,6 +69,30 @@ function DatabaseManager({ chosenTeam }){
         }, {onlyOnce: true});
     }
 
+    // Delete a team in the database by the name given
+    function deleteTeam() {
+        if (teamName === '' || teamName.includes(' ')){
+            alert('Please enter a team name without spaces');
+            return;
+        }
+        // remove
+        const dataRef = ref(database, `/teams/${teamName}`);
+        onValue(dataRef, (snapshot) => {
+            if (snapshot.val() === null) {
+                alert('The team you are trying to delete does not exist in the database.');
+                return;
+            }
+            // Delete the data
+            remove(dataRef)
+            .then(alert(`The team "${teamName}" was removed from the database.`))
+            .catch(error => {
+                alert(`Failed to remove the team ${teamName} from the database. Check log for details.`);
+                console.log(error);
+            });
+
+        }, {onlyOnce: true});
+    }
+
 
     return (
         <div className='DatabaseManager pokedex-panel'>
@@ -82,7 +106,7 @@ function DatabaseManager({ chosenTeam }){
             <button className='pokedex-button' onClick={createNewTeam}><b>Create</b></button>
             <button className='pokedex-button' onClick={updateTeam}><b>Update</b></button>
             <button className='pokedex-button'><b>Read</b></button>
-            <button className='pokedex-button'><b>Delete</b></button>
+            <button className='pokedex-button' onClick={deleteTeam}><b>Delete</b></button>
         </div>
     );
 }
