@@ -4,7 +4,30 @@
 
 A pokedex app built with [React JS](https://reactjs.org). The application uses the [PokeAPI](https://pokeapi.co) to request information about pokemon and illustrate the use of hooks and user interactions while navigating the list of available pokemon.
 
-This application was developed as the final project of the ReactJS course offered by Purdue IEEE and sponsored by the College of Engineering at Purdue University on the Spring of 2023.
+This application was developed as the final project of the ReactJS course offered by Purdue IEEE and sponsored by the College of Engineering at Purdue University in the Spring of 2023.
+
+# Requirements
+
+* [NodeJS](https://nodejs.org/en)
+* [NPM](https://www.npmjs.com) (installed with NodeJS)
+
+# Installation
+
+```
+git clone https://github.com/JuanSMartinez/purdue-dex.git
+cd purdue-dex
+npm install
+```
+
+While on the `purdue-dex` directory, start the application with the database features disabled by checking out the `firebase-disabled` branch:
+
+```
+git checkout firebase-disabled
+npm start
+```
+
+To start the application with all the features, only run `npm start` on the `main` branch.
+
 
 # Features
 
@@ -45,3 +68,5 @@ The database stores teams in the following structure:
 ```
 
 The JSON pokemon data is the same as returned by the [PokeAPI](https://pokeapi.co) at the pokemon endpoint, i.e., the data returned from a request of the form `https://pokeapi.co/api/v2/pokemon/{id or name}/`
+
+In the `firebase-disabled` branch, the selection of 6 pokemon cannot be stored in a database.
